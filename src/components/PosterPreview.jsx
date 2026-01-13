@@ -124,10 +124,11 @@ export function PosterPreview({ data, id }) {
 
                                     {/* Price */}
                                     <div
-                                        className="font-bold text-black leading-none"
-                                        style={{ fontSize: '6.9em' }}
+                                        className="font-bold text-black leading-none flex items-baseline gap-2"
+                                        style={{ fontSize: '5.2785em' }}
                                     >
-                                        € {data.price || '---'}
+                                        <span>€</span>
+                                        <span>{data.price || '---'}</span>
                                     </div>
                                 </div>
                             </div>
