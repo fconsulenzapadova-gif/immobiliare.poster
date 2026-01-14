@@ -43,12 +43,24 @@ export function PosterPreview({ data, id, onRandomizeBubbles }) {
 
     // Function to generate random bubble configuration
     const randomizeBubbles = () => {
-        const positions = ['top-left', 'top-right', 'bottom-left', 'bottom-right', 'top-center', 'bottom-center', 'left-center', 'right-center'];
+        const availablePositions = ['top-left', 'top-right', 'bottom-left', 'bottom-right', 'top-center', 'bottom-center', 'left-center', 'right-center'];
         const numBubbles = Math.floor(Math.random() * 2) + 2; // 2-3 bubbles
 
         const newBubbles = [];
+        const usedPositions = [];
+
         for (let i = 0; i < numBubbles; i++) {
-            const position = positions[Math.floor(Math.random() * positions.length)];
+            // Filter out already used positions
+            const remainingPositions = availablePositions.filter(pos => !usedPositions.includes(pos));
+
+            // If no positions left, break
+            if (remainingPositions.length === 0) break;
+
+            // Pick a random position from remaining ones
+            const randomIndex = Math.floor(Math.random() * remainingPositions.length);
+            const position = remainingPositions[randomIndex];
+            usedPositions.push(position);
+
             const size = Math.floor(Math.random() * 400) + 300; // 300-700px
             const color = bubbleColors[Math.floor(Math.random() * bubbleColors.length)];
 
