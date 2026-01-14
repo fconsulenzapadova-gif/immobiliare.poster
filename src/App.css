@@ -43,3 +43,44 @@
 .read-the-docs {
     color: #888;
 }
+
+/* Print styles */
+@media print {
+    @page {
+        size: A3 landscape;
+        margin: 0;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Hide sidebar */
+    .flex.h-screen>div:first-child {
+        display: none !important;
+    }
+
+    /* Full width for preview area */
+    .flex.h-screen>div:last-child {
+        width: 100% !important;
+        padding: 0 !important;
+        background: white !important;
+    }
+
+    /* Remove background pattern */
+    .flex.h-screen>div:last-child>div:first-child {
+        display: none !important;
+    }
+
+    /* Remove shadow and reset scale */
+    .flex.h-screen>div:last-child>div:last-child {
+        box-shadow: none !important;
+        transform: none !important;
+    }
+
+    /* Reset poster scale to actual size */
+    .flex.h-screen>div:last-child>div:last-child>div {
+        transform: scale(1) !important;
+    }
+}
