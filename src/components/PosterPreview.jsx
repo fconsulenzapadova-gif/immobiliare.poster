@@ -218,7 +218,7 @@ export function PosterPreview({ data, id, onRandomizeBubbles }) {
 
                             {/* Zone / Title */}
                             <h2
-                                className="font-bold uppercase tracking-wide mb-3 text-center w-full"
+                                className="font-bold uppercase tracking-wide mb-10 text-center w-full"
                                 style={{
                                     color: '#008ba3',
                                     fontSize: '3.335em',
