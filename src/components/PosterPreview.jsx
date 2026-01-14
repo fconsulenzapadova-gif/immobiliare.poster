@@ -45,7 +45,7 @@ export function PosterPreview({ data, id }) {
                 />
 
                 {/* Main Content Container */}
-                <div className="relative z-10 w-full h-full flex flex-col p-20 pb-16">
+                <div className="relative z-10 w-full h-full flex flex-col pb-16" style={{ paddingLeft: '80px', paddingRight: '80px', paddingTop: '210px' }}>
 
                     {/* Header Type */}
                     <h1
