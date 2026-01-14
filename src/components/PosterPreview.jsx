@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-export function PosterPreview({ data, id }) {
+export function PosterPreview({ data, id, onRandomizeBubbles }) {
     // A3 High Res Base Scale
     const width = 1191 * 1.5;
     const height = 842 * 1.5;
@@ -10,6 +10,131 @@ export function PosterPreview({ data, id }) {
 
     // Design Color (Teal from image)
     const themeColor = '#17a9bc';
+
+    // Bubble configurations - can be randomized
+    const [bubbles, setBubbles] = useState([
+        {
+            position: 'top-right',
+            size: 500,
+            color: '#8bd0db',
+            translateX: '45%',
+            translateY: '-45%'
+        },
+        {
+            position: 'bottom-left',
+            size: 600,
+            color: '#8bd0db',
+            translateX: '-45%',
+            translateY: '45%'
+        }
+    ]);
+
+    // Color palette for bubbles (light blue and complementary tones)
+    const bubbleColors = [
+        '#8bd0db', // light cyan
+        '#a8e6f0', // lighter cyan
+        '#6bc4d4', // medium cyan
+        '#b8e8f5', // very light blue
+        '#9dd9e8', // soft cyan
+        '#ffd4a3', // complementary peach
+        '#ffe4c4', // complementary light peach
+        '#ffc4a3', // complementary orange-peach
+    ];
+
+    // Function to generate random bubble configuration
+    const randomizeBubbles = () => {
+        const positions = ['top-left', 'top-right', 'bottom-left', 'bottom-right', 'top-center', 'bottom-center', 'left-center', 'right-center'];
+        const numBubbles = Math.floor(Math.random() * 2) + 2; // 2-3 bubbles
+
+        const newBubbles = [];
+        for (let i = 0; i < numBubbles; i++) {
+            const position = positions[Math.floor(Math.random() * positions.length)];
+            const size = Math.floor(Math.random() * 400) + 300; // 300-700px
+            const color = bubbleColors[Math.floor(Math.random() * bubbleColors.length)];
+
+            let translateX = '0%';
+            let translateY = '0%';
+
+            // Calculate translation based on position
+            switch (position) {
+                case 'top-left':
+                    translateX = '-45%';
+                    translateY = '-45%';
+                    break;
+                case 'top-right':
+                    translateX = '45%';
+                    translateY = '-45%';
+                    break;
+                case 'bottom-left':
+                    translateX = '-45%';
+                    translateY = '45%';
+                    break;
+                case 'bottom-right':
+                    translateX = '45%';
+                    translateY = '45%';
+                    break;
+                case 'top-center':
+                    translateX = '0%';
+                    translateY = '-50%';
+                    break;
+                case 'bottom-center':
+                    translateX = '0%';
+                    translateY = '50%';
+                    break;
+                case 'left-center':
+                    translateX = '-50%';
+                    translateY = '0%';
+                    break;
+                case 'right-center':
+                    translateX = '50%';
+                    translateY = '0%';
+                    break;
+            }
+
+            newBubbles.push({
+                position,
+                size,
+                color,
+                translateX,
+                translateY
+            });
+        }
+
+        setBubbles(newBubbles);
+    };
+
+    // Expose randomize function to parent
+    React.useEffect(() => {
+        if (onRandomizeBubbles) {
+            onRandomizeBubbles(randomizeBubbles);
+        }
+    }, [onRandomizeBubbles]);
+
+    // Helper function to get position styles
+    const getPositionStyle = (position) => {
+        const baseStyle = { position: 'absolute' };
+
+        switch (position) {
+            case 'top-left':
+                return { ...baseStyle, top: 0, left: 0 };
+            case 'top-right':
+                return { ...baseStyle, top: 0, right: 0 };
+            case 'bottom-left':
+                return { ...baseStyle, bottom: 0, left: 0 };
+            case 'bottom-right':
+                return { ...baseStyle, bottom: 0, right: 0 };
+            case 'top-center':
+                return { ...baseStyle, top: 0, left: '50%' };
+            case 'bottom-center':
+                return { ...baseStyle, bottom: 0, left: '50%' };
+            case 'left-center':
+                return { ...baseStyle, top: '50%', left: 0 };
+            case 'right-center':
+                return { ...baseStyle, top: '50%', right: 0 };
+            default:
+                return baseStyle;
+        }
+    };
 
     return (
         <div className="relative origin-center transition-transform duration-200"
@@ -23,26 +148,20 @@ export function PosterPreview({ data, id }) {
                 className="bg-white text-gray-900 overflow-hidden relative flex flex-col p-0"
                 style={{ width: `${width}px`, height: `${height}px` }}
             >
-                {/* Decorative Circles - Resized for better balance */}
-                <div
-                    className="absolute top-0 right-0 rounded-full z-0"
-                    style={{
-                        width: '500px',
-                        height: '500px',
-                        backgroundColor: '#8bd0db',
-                        transform: 'translate(45%, -45%)',
-                    }}
-                />
-
-                <div
-                    className="absolute bottom-0 left-0 rounded-full z-0"
-                    style={{
-                        width: '600px',
-                        height: '600px',
-                        backgroundColor: '#8bd0db',
-                        transform: 'translate(-45%, 45%)',
-                    }}
-                />
+                {/* Decorative Circles - Dynamic and randomizable */}
+                {bubbles.map((bubble, index) => (
+                    <div
+                        key={index}
+                        className="absolute rounded-full z-0 transition-all duration-700 ease-in-out"
+                        style={{
+                            ...getPositionStyle(bubble.position),
+                            width: `${bubble.size}px`,
+                            height: `${bubble.size}px`,
+                            backgroundColor: bubble.color,
+                            transform: `translate(${bubble.translateX}, ${bubble.translateY})`,
+                        }}
+                    />
+                ))}
 
                 {/* Main Content Container */}
                 <div className="relative z-10 w-full h-full flex flex-col pb-16" style={{ paddingLeft: '80px', paddingRight: '80px', paddingTop: '147px' }}>
