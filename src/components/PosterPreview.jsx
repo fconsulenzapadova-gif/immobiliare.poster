@@ -121,7 +121,13 @@ export function PosterPreview({ data, id }) {
                             {/* Description */}
                             <div
                                 className="w-full text-left text-gray-700 font-light leading-relaxed whitespace-pre-wrap pl-2 flex-1 overflow-hidden"
-                                style={{ fontSize: '2.3em', marginTop: '40px' }}
+                                style={{
+                                    fontSize: '2.3em',
+                                    marginTop: '40px',
+                                    wordWrap: 'break-word',
+                                    overflowWrap: 'break-word',
+                                    wordBreak: 'normal'
+                                }}
                             >
                                 {data.description || 'Descrizione immobile...'}
                             </div>
