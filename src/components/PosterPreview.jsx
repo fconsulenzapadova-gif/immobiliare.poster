@@ -237,7 +237,7 @@ export function PosterPreview({ data, id, onRandomizeBubbles }) {
                                     boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
                                     lineHeight: '1',
                                     textAlign: 'center',
-                                    paddingTop: '0.5rem',
+                                    paddingTop: '0.25rem',
                                     paddingBottom: '2rem',
                                     paddingLeft: '2rem',
                                     paddingRight: '2rem',
