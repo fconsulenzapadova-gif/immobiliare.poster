@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 export function PosterPreview({ data, id, onRandomizeBubbles }) {
     // A3 High Res Base Scale
@@ -10,6 +10,29 @@ export function PosterPreview({ data, id, onRandomizeBubbles }) {
 
     // Design Color (Teal from image)
     const themeColor = '#17a9bc';
+
+    // Dynamic scale based on viewport
+    const [scale, setScale] = useState(0.35);
+
+    useEffect(() => {
+        const calculateScale = () => {
+            // Get available space (accounting for sidebar width of 400px and padding)
+            const availableWidth = window.innerWidth - 400 - 64; // sidebar + padding
+            const availableHeight = window.innerHeight - 64; // padding
+
+            // Calculate scale to fit
+            const scaleX = availableWidth / width;
+            const scaleY = availableHeight / height;
+
+            // Use the smaller scale to ensure it fits, with min/max limits
+            const newScale = Math.min(Math.max(Math.min(scaleX, scaleY), 0.2), 0.5);
+            setScale(newScale);
+        };
+
+        calculateScale();
+        window.addEventListener('resize', calculateScale);
+        return () => window.removeEventListener('resize', calculateScale);
+    }, [width, height]);
 
     // Bubble configurations - can be randomized
     const [bubbles, setBubbles] = useState([
@@ -171,7 +194,7 @@ export function PosterPreview({ data, id, onRandomizeBubbles }) {
     return (
         <div className="relative origin-center transition-transform duration-200"
             style={{
-                transform: 'scale(0.35)',
+                transform: `scale(${scale})`,
                 boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)' // Shadow-2xl equivalent
             }}>
 
