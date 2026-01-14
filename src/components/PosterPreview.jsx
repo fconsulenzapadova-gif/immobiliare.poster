@@ -75,14 +75,15 @@ export function PosterPreview({ data, id }) {
                         </div>
 
                         {/* Right Column: Details - Better spacing/centering */}
-                        <div className="w-[45%] flex flex-col items-end text-right h-full pt-4">
+                        <div className="w-[45%] flex flex-col items-end text-right h-full">
 
                             {/* Zone / Title */}
                             <h2
-                                className="font-bold uppercase tracking-wide mb-8 text-center w-full"
+                                className="font-bold uppercase tracking-wide mb-3 text-center w-full"
                                 style={{
                                     color: '#008ba3',
-                                    fontSize: '3.335em'
+                                    fontSize: '3.335em',
+                                    marginTop: '-60px'
                                 }}
                             >
                                 {data.title || 'ZONA...'}
@@ -90,11 +91,13 @@ export function PosterPreview({ data, id }) {
 
                             {/* Features Badge */}
                             <div
-                                className="w-full py-5 px-8 rounded-2xl mb-10 flex items-center justify-center font-bold text-white glow-sm"
+                                className="w-full py-6 px-8 rounded-2xl mb-6 flex items-center justify-center font-bold text-white"
                                 style={{
                                     backgroundColor: '#008ba3',
                                     fontSize: '2.3em',
-                                    boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)'
+                                    boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+                                    lineHeight: '1',
+                                    textAlign: 'center'
                                 }}
                             >
                                 {data.features || 'Mq | Camere | Bagni'}
