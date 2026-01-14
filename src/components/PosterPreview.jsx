@@ -272,7 +272,7 @@ export function PosterPreview({ data, id, onRandomizeBubbles }) {
                             </div>
 
                             {/* Footer Details */}
-                            <div className="w-full mt-8 flex flex-col items-end gap-3 border-t-2 border-gray-100 pt-6">
+                            <div className="w-full mt-8 flex flex-col items-end gap-3 border-t-2 border-gray-100 pt-3">
                                 <div className="w-full flex justify-between items-end">
                                     <div className="text-left">
                                         {/* Reference */}
