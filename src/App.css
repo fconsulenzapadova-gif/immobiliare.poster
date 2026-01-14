@@ -51,9 +51,21 @@
         margin: 0;
     }
 
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        color-adjust: exact !important;
+    }
+
     body {
         margin: 0;
         padding: 0;
+        background: white !important;
+    }
+
+    /* Hide everything except the poster */
+    body>div:not(#root) {
+        display: none !important;
     }
 
     /* Hide sidebar */
@@ -64,8 +76,14 @@
     /* Full width for preview area */
     .flex.h-screen>div:last-child {
         width: 100% !important;
+        height: 100vh !important;
         padding: 0 !important;
+        margin: 0 !important;
         background: white !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        overflow: visible !important;
     }
 
     /* Remove background pattern */
@@ -73,14 +91,19 @@
         display: none !important;
     }
 
-    /* Remove shadow and reset scale */
+    /* Remove shadow and center poster */
     .flex.h-screen>div:last-child>div:last-child {
         box-shadow: none !important;
         transform: none !important;
+        margin: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
     }
 
-    /* Reset poster scale to actual size */
+    /* Reset poster scale to actual size and center */
     .flex.h-screen>div:last-child>div:last-child>div {
         transform: scale(1) !important;
+        margin: 0 auto !important;
     }
 }
