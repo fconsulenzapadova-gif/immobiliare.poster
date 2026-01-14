@@ -1,7 +1,7 @@
 import html2canvas from 'html2canvas';
 import { jsPDF } from 'jspdf';
 
-export const generatePDF = async (elementId) => {
+export const generatePDF = async (elementId, filename = 'poster-immobiliare') => {
     const originalElement = document.getElementById(elementId);
     if (!originalElement) throw new Error('Element not found');
 
@@ -49,7 +49,7 @@ export const generatePDF = async (elementId) => {
         const pdfHeight = 297;
 
         pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-        pdf.save('poster-immobiliare.pdf');
+        pdf.save(`${filename}.pdf`);
     } catch (err) {
         console.error('PDF generation error:', err);
         throw err;

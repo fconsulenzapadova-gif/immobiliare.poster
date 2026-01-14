@@ -75,7 +75,7 @@ export function PosterPreview({ data, id }) {
                         </div>
 
                         {/* Right Column: Details - Better spacing/centering */}
-                        <div className="w-[45%] flex flex-col items-end text-right h-full">
+                        <div className="w-[45%] flex flex-col items-end text-right" style={{ height: '669px' }}>
 
                             {/* Zone / Title */}
                             <h2
@@ -91,37 +91,55 @@ export function PosterPreview({ data, id }) {
 
                             {/* Features Badge */}
                             <div
-                                className="w-full py-6 px-8 rounded-2xl mb-6 flex items-center justify-center font-bold text-white"
+                                className="w-full rounded-2xl mb-6 flex items-center justify-center font-bold text-white"
                                 style={{
                                     backgroundColor: '#008ba3',
                                     fontSize: '2.3em',
                                     boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
                                     lineHeight: '1',
-                                    textAlign: 'center'
+                                    textAlign: 'center',
+                                    padding: '1.5rem 2rem',
+                                    minHeight: '4.5rem',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center'
                                 }}
                             >
-                                {data.features || 'Mq | Camere | Bagni'}
+                                {(() => {
+                                    const roomsNum = parseInt(data.rooms) || 0;
+                                    const bathroomsNum = parseInt(data.bathrooms) || 0;
+                                    const roomsText = roomsNum === 1 ? 'Camera' : 'Camere';
+                                    const bathroomsText = bathroomsNum === 1 ? 'Bagno' : 'Bagni';
+
+                                    if (data.sqm || data.rooms || data.bathrooms) {
+                                        return `${data.sqm || '...'} mq | ${data.rooms || '...'} ${roomsText} | ${data.bathrooms || '...'} ${bathroomsText}`;
+                                    }
+                                    return 'Mq | Camere | Bagni';
+                                })()}
                             </div>
 
                             {/* Description */}
                             <div
-                                className="w-full text-left text-gray-700 font-light leading-relaxed whitespace-pre-wrap pl-2 mb-auto"
-                                style={{ fontSize: '2.3em' }}
+                                className="w-full text-left text-gray-700 font-light leading-relaxed whitespace-pre-wrap pl-2 flex-1 overflow-hidden"
+                                style={{ fontSize: '2.3em', marginTop: '40px' }}
                             >
                                 {data.description || 'Descrizione immobile...'}
                             </div>
 
                             {/* Footer Details */}
-                            <div className="w-full mt-8 flex flex-col items-end gap-3 border-t-2 border-gray-100 pt-8">
+                            <div className="w-full flex flex-col items-end gap-3 border-t-2 border-gray-100 pt-6">
                                 <div className="w-full flex justify-between items-end">
                                     <div className="text-left">
                                         {/* Reference */}
                                         <div className="text-gray-500 mb-1" style={{ fontSize: '1.84em' }}>
-                                            {data.reference}
+                                            {data.referenceNumber ? `Rif. ${data.referenceNumber}` : 'Rif. ...'}
                                         </div>
                                         {/* Energy Class */}
                                         <div className="text-gray-800 font-medium" style={{ fontSize: '1.725em' }}>
-                                            {data.energyClass}
+                                            {data.energyClassLetter || data.ipeNumber
+                                                ? `Classe ${data.energyClassLetter || '...'} - ipe ${data.ipeNumber || '...'}`
+                                                : 'Classe ... - ipe ...'
+                                            }
                                         </div>
                                     </div>
 

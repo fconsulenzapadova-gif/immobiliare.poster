@@ -6,20 +6,27 @@ import { generatePDF } from './utils/pdfExport';
 
 function App() {
     const [data, setData] = useState({
-        title: 'ZONA NAZARETH', // Acts as Zone/Title
-        price: '600.000',
+        title: '',
+        price: '',
         type: 'sale',
         image: null,
         imagePreview: null,
-        description: 'A pochi passi dal centro storico proponiamo in vendita Abitazione nuova con ingresso indipendente, finiture di pregio a scelta, tre camere, studio, tre bagni e taverna, terrazza nella zona giorno.\nGarage ampio e posto auto',
-        features: '250 mq | 3 Camere +1 | 3 Bagni',
-        energyClass: 'Classe B - ipe 60,22',
-        reference: 'Rif. 517'
+        description: '',
+        sqm: '',
+        rooms: '',
+        bathrooms: '',
+        energyClassLetter: '',
+        ipeNumber: '',
+        referenceNumber: ''
     });
 
     const handleExport = async () => {
         try {
-            await generatePDF('poster-preview');
+            // Use reference number as filename, or default to 'poster-immobiliare'
+            const filename = data.referenceNumber
+                ? `Rif-${data.referenceNumber}`
+                : 'poster-immobiliare';
+            await generatePDF('poster-preview', filename);
         } catch (error) {
             console.error('Export failed:', error);
             alert(`Errore durante l'esportazione del PDF: ${error.message}`);
