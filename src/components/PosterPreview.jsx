@@ -103,10 +103,30 @@ export function PosterPreview({ data, id, onRandomizeBubbles }) {
         setBubbles(newBubbles);
     };
 
-    // Expose randomize function to parent
+    // Function to reset to standard bubble configuration
+    const resetToStandardBubbles = () => {
+        setBubbles([
+            {
+                position: 'top-right',
+                size: 500,
+                color: '#8bd0db',
+                translateX: '45%',
+                translateY: '-45%'
+            },
+            {
+                position: 'bottom-left',
+                size: 600,
+                color: '#8bd0db',
+                translateX: '-45%',
+                translateY: '45%'
+            }
+        ]);
+    };
+
+    // Expose randomize and reset functions to parent
     React.useEffect(() => {
         if (onRandomizeBubbles) {
-            onRandomizeBubbles(randomizeBubbles);
+            onRandomizeBubbles({ randomize: randomizeBubbles, reset: resetToStandardBubbles });
         }
     }, [onRandomizeBubbles]);
 

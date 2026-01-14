@@ -20,7 +20,7 @@ function App() {
         referenceNumber: ''
     });
 
-    const [randomizeBubblesFunc, setRandomizeBubblesFunc] = useState(null);
+    const [bubbleFunctions, setBubbleFunctions] = useState(null);
 
     const handleExport = async () => {
         try {
@@ -36,8 +36,14 @@ function App() {
     };
 
     const handleRandomizeBubbles = () => {
-        if (randomizeBubblesFunc) {
-            randomizeBubblesFunc();
+        if (bubbleFunctions?.randomize) {
+            bubbleFunctions.randomize();
+        }
+    };
+
+    const handleResetBubbles = () => {
+        if (bubbleFunctions?.reset) {
+            bubbleFunctions.reset();
         }
     };
 
@@ -65,6 +71,13 @@ function App() {
                         Bolle Casuali
                     </button>
                     <button
+                        onClick={handleResetBubbles}
+                        className="w-full py-3 bg-teal-600 hover:bg-teal-700 text-white rounded-xl font-semibold flex items-center justify-center gap-2 transition-all shadow-lg hover:shadow-teal-500/20 active:scale-[0.98]"
+                    >
+                        <Layout className="w-5 h-5" />
+                        Bolle Standard
+                    </button>
+                    <button
                         onClick={handleExport}
                         className="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-semibold flex items-center justify-center gap-2 transition-all shadow-lg hover:shadow-blue-500/20 active:scale-[0.98]"
                     >
@@ -83,7 +96,7 @@ function App() {
                     <PosterPreview
                         data={data}
                         id="poster-preview"
-                        onRandomizeBubbles={(func) => setRandomizeBubblesFunc(() => func)}
+                        onRandomizeBubbles={(funcs) => setBubbleFunctions(funcs)}
                     />
                 </div>
             </div>
