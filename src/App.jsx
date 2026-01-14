@@ -63,20 +63,22 @@ function App() {
                 </div>
 
                 <div className="p-6 border-t border-[#333] bg-[#1f1f1f] space-y-3">
-                    <button
-                        onClick={handleRandomizeBubbles}
-                        className="w-full py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-xl font-semibold flex items-center justify-center gap-2 transition-all shadow-lg hover:shadow-purple-500/20 active:scale-[0.98]"
-                    >
-                        <Sparkles className="w-5 h-5" />
-                        Bolle Casuali
-                    </button>
-                    <button
-                        onClick={handleResetBubbles}
-                        className="w-full py-3 bg-teal-600 hover:bg-teal-700 text-white rounded-xl font-semibold flex items-center justify-center gap-2 transition-all shadow-lg hover:shadow-teal-500/20 active:scale-[0.98]"
-                    >
-                        <Layout className="w-5 h-5" />
-                        Bolle Standard
-                    </button>
+                    <div className="grid grid-cols-2 gap-3">
+                        <button
+                            onClick={handleRandomizeBubbles}
+                            className="py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-xl font-semibold flex items-center justify-center gap-2 transition-all shadow-lg hover:shadow-purple-500/20 active:scale-[0.98]"
+                        >
+                            <Sparkles className="w-5 h-5" />
+                            Casuali
+                        </button>
+                        <button
+                            onClick={handleResetBubbles}
+                            className="py-3 bg-teal-600 hover:bg-teal-700 text-white rounded-xl font-semibold flex items-center justify-center gap-2 transition-all shadow-lg hover:shadow-teal-500/20 active:scale-[0.98]"
+                        >
+                            <Layout className="w-5 h-5" />
+                            Standard
+                        </button>
+                    </div>
                     <button
                         onClick={handleExport}
                         className="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-semibold flex items-center justify-center gap-2 transition-all shadow-lg hover:shadow-blue-500/20 active:scale-[0.98]"
