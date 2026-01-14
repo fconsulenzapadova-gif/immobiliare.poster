@@ -97,9 +97,11 @@ export function PosterForm({ data, onChange }) {
                         type="text"
                         value={data.title}
                         onChange={(e) => handleChange('title', e.target.value)}
+                        maxLength={30}
                         className="w-full bg-[#1a1a1a] border border-[#333] rounded-lg p-3 text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all placeholder-gray-600"
                         placeholder="Es. ZONA NAZARETH"
                     />
+                    <div className="text-xs text-gray-500 text-right">{data.title.length}/30</div>
                 </div>
 
                 <div className="space-y-2">
@@ -111,6 +113,7 @@ export function PosterForm({ data, onChange }) {
                             type="text"
                             value={data.sqm}
                             onChange={(e) => handleChange('sqm', e.target.value)}
+                            maxLength={5}
                             className="w-full bg-[#1a1a1a] border border-[#333] rounded-lg p-3 text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all placeholder-gray-600 text-center"
                             placeholder="mq"
                         />
@@ -118,6 +121,7 @@ export function PosterForm({ data, onChange }) {
                             type="text"
                             value={data.rooms}
                             onChange={(e) => handleChange('rooms', e.target.value)}
+                            maxLength={2}
                             className="w-full bg-[#1a1a1a] border border-[#333] rounded-lg p-3 text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all placeholder-gray-600 text-center"
                             placeholder="Camere"
                         />
@@ -125,6 +129,7 @@ export function PosterForm({ data, onChange }) {
                             type="text"
                             value={data.bathrooms}
                             onChange={(e) => handleChange('bathrooms', e.target.value)}
+                            maxLength={2}
                             className="w-full bg-[#1a1a1a] border border-[#333] rounded-lg p-3 text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all placeholder-gray-600 text-center"
                             placeholder="Bagni"
                         />
@@ -168,6 +173,7 @@ export function PosterForm({ data, onChange }) {
                                 type="text"
                                 value={data.referenceNumber}
                                 onChange={(e) => handleChange('referenceNumber', e.target.value)}
+                                maxLength={10}
                                 className="w-full bg-[#1a1a1a] border border-[#333] rounded-lg p-3 pl-14 text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all placeholder-gray-600"
                                 placeholder="517"
                             />
@@ -201,6 +207,7 @@ export function PosterForm({ data, onChange }) {
                                 type="text"
                                 value={data.ipeNumber}
                                 onChange={(e) => handleChange('ipeNumber', e.target.value)}
+                                maxLength={10}
                                 className="w-full bg-[#1a1a1a] border border-[#333] rounded-lg p-3 pl-12 text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all placeholder-gray-600"
                                 placeholder="60,22"
                             />
@@ -209,12 +216,18 @@ export function PosterForm({ data, onChange }) {
                 </div>
 
                 <div className="space-y-2">
-                    <label className="text-xs font-semibold text-gray-500 uppercase tracking-wider flex items-center gap-2">
-                        <TypeIcon className="w-3 h-3" /> Descrizione
+                    <label className="text-xs font-semibold text-gray-500 uppercase tracking-wider flex items-center justify-between">
+                        <span className="flex items-center gap-2">
+                            <TypeIcon className="w-3 h-3" /> Descrizione
+                        </span>
+                        <span className={`text-xs ${data.description.length > 270 ? 'text-yellow-500' : 'text-gray-500'}`}>
+                            {data.description.length}/300
+                        </span>
                     </label>
                     <textarea
                         value={data.description}
                         onChange={(e) => handleChange('description', e.target.value)}
+                        maxLength={300}
                         className="w-full h-32 bg-[#1a1a1a] border border-[#333] rounded-lg p-3 text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all resize-none leading-relaxed"
                         placeholder="Descrivi le caratteristiche principali dell'immobile..."
                     />
