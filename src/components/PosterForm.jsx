@@ -175,7 +175,6 @@ export function PosterForm({ data, onChange }) {
                                 onChange={(e) => handleChange('referenceNumber', e.target.value)}
                                 maxLength={10}
                                 className="w-full bg-[#1a1a1a] border border-[#333] rounded-lg p-3 pl-14 text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all placeholder-gray-600"
-                                placeholder="517"
                             />
                         </div>
                     </div>
@@ -195,7 +194,6 @@ export function PosterForm({ data, onChange }) {
                                 value={data.energyClassLetter}
                                 onChange={(e) => handleChange('energyClassLetter', e.target.value.toUpperCase())}
                                 className="w-full bg-[#1a1a1a] border border-[#333] rounded-lg p-3 pl-16 text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all placeholder-gray-600 text-center uppercase"
-                                placeholder="B"
                                 maxLength="3"
                             />
                         </div>
@@ -209,7 +207,6 @@ export function PosterForm({ data, onChange }) {
                                 onChange={(e) => handleChange('ipeNumber', e.target.value)}
                                 maxLength={10}
                                 className="w-full bg-[#1a1a1a] border border-[#333] rounded-lg p-3 pl-12 text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all placeholder-gray-600"
-                                placeholder="60,22"
                             />
                         </div>
                     </div>
