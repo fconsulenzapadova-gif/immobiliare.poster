@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { PosterForm } from './components/PosterForm';
 import { PosterPreview } from './components/PosterPreview';
-import { Download, Layout, Sparkles, Printer } from 'lucide-react';
+import { Download, Layout, Sparkles } from 'lucide-react';
 import { generatePDF } from './utils/pdfExport';
 
 function App() {
@@ -33,10 +33,6 @@ function App() {
             console.error('Export failed:', error);
             alert(`Errore durante l'esportazione del PDF: ${error.message}`);
         }
-    };
-
-    const handlePrint = () => {
-        window.print();
     };
 
     const handleRandomizeBubbles = () => {
@@ -83,13 +79,6 @@ function App() {
                             Standard
                         </button>
                     </div>
-                    <button
-                        onClick={handlePrint}
-                        className="w-full py-4 bg-green-600 hover:bg-green-700 text-white rounded-xl font-semibold flex items-center justify-center gap-2 transition-all shadow-lg hover:shadow-green-500/20 active:scale-[0.98]"
-                    >
-                        <Printer className="w-5 h-5" />
-                        Stampa Diretta
-                    </button>
                     <button
                         onClick={handleExport}
                         className="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-semibold flex items-center justify-center gap-2 transition-all shadow-lg hover:shadow-blue-500/20 active:scale-[0.98]"
