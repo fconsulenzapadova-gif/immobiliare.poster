@@ -75,11 +75,11 @@ export function PosterForm({ data, onChange }) {
                                 <Upload className="w-6 h-6 text-gray-400 group-hover:text-blue-500" />
                             </div>
                             <p className="text-sm text-gray-400 font-medium">Clicca o trascina una foto qui</p>
-                            <p className="text-xs text-gray-500 mt-1">PNG, JPG fino a 20MB</p>
+                            <p className="text-xs text-gray-500 mt-1">JPG, PNG, HEIC, WebP fino a 20MB</p>
                             <input
                                 type="file"
                                 className="hidden"
-                                accept="image/*"
+                                accept="image/jpeg,image/jpg,image/png,image/heic,image/heif,image/webp,image/*"
                                 onChange={handleImageUpload}
                             />
                         </label>
