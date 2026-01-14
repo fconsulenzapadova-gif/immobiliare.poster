@@ -193,8 +193,8 @@ export function PosterForm({ data, onChange }) {
                             <input
                                 type="text"
                                 value={data.energyClassLetter}
-                                onChange={(e) => handleChange('energyClassLetter', e.target.value)}
-                                className="w-full bg-[#1a1a1a] border border-[#333] rounded-lg p-3 pl-16 text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all placeholder-gray-600 text-center"
+                                onChange={(e) => handleChange('energyClassLetter', e.target.value.toUpperCase())}
+                                className="w-full bg-[#1a1a1a] border border-[#333] rounded-lg p-3 pl-16 text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all placeholder-gray-600 text-center uppercase"
                                 placeholder="B"
                                 maxLength="3"
                             />
@@ -216,18 +216,13 @@ export function PosterForm({ data, onChange }) {
                 </div>
 
                 <div className="space-y-2">
-                    <label className="text-xs font-semibold text-gray-500 uppercase tracking-wider flex items-center justify-between">
-                        <span className="flex items-center gap-2">
-                            <TypeIcon className="w-3 h-3" /> Descrizione
-                        </span>
-                        <span className={`text-xs ${data.description.length > 270 ? 'text-yellow-500' : 'text-gray-500'}`}>
-                            {data.description.length}/300
-                        </span>
+                    <label className="text-xs font-semibold text-gray-500 uppercase tracking-wider flex items-center gap-2">
+                        <TypeIcon className="w-3 h-3" /> Descrizione
                     </label>
                     <textarea
                         value={data.description}
                         onChange={(e) => handleChange('description', e.target.value)}
-                        maxLength={300}
+                        maxLength={228}
                         className="w-full h-32 bg-[#1a1a1a] border border-[#333] rounded-lg p-3 text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all resize-none leading-relaxed"
                         placeholder="Descrivi le caratteristiche principali dell'immobile..."
                     />
